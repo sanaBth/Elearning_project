@@ -1,0 +1,117 @@
+<app-header-not-transparent></app-header-not-transparent>
+<div class="container">
+  <div class="row g-5">
+    <div class="col-md-7 col-lg-8">
+      <form [formGroup]="postForm" enctype="multipart/form-data">
+        <div class="row mb-5 mt-3">
+          <div class="col-md-12">
+            <h4 class="mb-3">{{ actionPage }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-auto">
+              <label for="name" class="form-label">Nom Vidéo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Nom..."
+                formControlName="name"
+              />
+              <div
+                class="text-info"
+                *ngIf="
+                  postForm.controls.name &&
+                  postForm.controls.name.invalid &&
+                  postForm.controls.name.touched
+                "
+              >
+                Ce champs est obligatoire
+              </div>
+            </div>
+            <div class="col-auto">
+              <label for="fileselect" class="form-label"
+                >Selectionner vidéo</label
+              >
+
+              <input
+                class="form-control"
+                formControlName="lienVideo"
+                name="lienVideo"
+                value="lienVideo"
+                type="file"
+                id="fileselect"
+                (change)="selectFile($event)"
+              />
+            </div>
+            <div class="col-auto">
+              <label for="myInput" class="form-label">Durée vidéo</label>
+              <input
+                type="text"
+                placeholder="durée..."
+                id="myInput"
+                formControlName="dure"
+                class="form-control"
+              />
+              <div
+                class="text-info"
+                *ngIf="
+                  postForm.controls.dure &&
+                  postForm.controls.dure.invalid &&
+                  postForm.controls.dure.touched
+                "
+              >
+                Ce champs est obligatoire
+              </div>
+            </div>
+
+            <div class="col-auto">
+              <label for="fileselect" class="form-label">Décrivez vidéo</label>
+              <textarea
+                class="form-control"
+                placeholder="Décrivez..."
+                id="myTextarea"
+                formControlName="description"
+                rows="3"
+              ></textarea>
+              <div
+                class="text-info"
+                *ngIf="
+                  postForm.controls.description &&
+                  postForm.controls.description.invalid &&
+                  postForm.controls.description.touched
+                "
+              >
+                Ce champs est obligatoire
+              </div>
+            </div>
+            <div class="col-auto">
+              <label for="fileselect" class="form-label">Nom formation</label>
+              <select
+                class="form-control"
+                id="idform"
+                (change)="selectId($event)"
+              >
+                <option>Liste des formations</option>
+                <option *ngFor="let v of formation" value="{{ v._id }}">
+                  {{ v.nom }}
+                </option>
+              </select>
+            </div>
+            <div class="mt-5 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary btn-round"
+                [disabled]="!postForm.valid"
+                (click)="newVideo()"
+              >
+                {{ actionPage }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -52,7 +52,9 @@ import { ListeCommandeComponent } from './liste-commande/liste-commande.componen
         PipePipe,
         PagesnotfoundComponent,
         PanierComponent,
-        ListeCommandeComponent
+        ListeCommandeComponent,
+        
+        
     ]
 })
 export class ExamplesModule { }

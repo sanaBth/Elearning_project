@@ -26,7 +26,7 @@ idformationpanier :string[]= [];
 
   ngOnInit(): void {
 
-    this.invokeStripe();
+   this.invokeStripe();
     this.refresh();
 this.sommeTotal();
   }
@@ -105,6 +105,7 @@ this.sommeTotal();
     }
    }
   }
+
   makePayment(amount: any) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key:

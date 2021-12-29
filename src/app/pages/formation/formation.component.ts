@@ -8,6 +8,7 @@ import { Panier } from 'app/model/panier';
 import { User } from 'app/model/user';
 import { FormationDbService } from 'app/service/formation-db.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
+import { ToastService } from 'app/service/toast.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class FormationComponent implements OnInit {
       listpanier :Panier[]
   constructor(private formationservice :FormationDbService ,
     private storageService :LocalstorageService ,
-    private router: Router)
+    private router: Router,public toastService: ToastService)
    { }
 
   ngOnInit(): void
@@ -73,9 +74,9 @@ export class FormationComponent implements OnInit {
      this.storageService.storeOnpanier(oneformation);
     } 
   }
-  popToast()
+  showSuccess()
   {
-   // this.toastr.warning('veuillez remplir ce champs');
+    this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000  });
    
   }
   

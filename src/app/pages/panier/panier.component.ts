@@ -4,6 +4,7 @@ import { Commande } from 'app/model/commande';
 import { Panier } from 'app/model/panier';
 import { CartService } from 'app/service/cart.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
+import { ToastService } from 'app/service/toast.service';
 
 @Component({
   selector: 'app-panier',
@@ -21,7 +22,7 @@ idformationpanier :string[]= [];
   sommePanier:Number
   constructor(private storageService :LocalstorageService ,
     private router: Router,
-    private cartService : CartService
+    private cartService : CartService,public toastService: ToastService
     ) { }
 
   ngOnInit(): void {
@@ -57,14 +58,16 @@ this.sommeTotal();
     this.storageService.deleteformation(i);
     this.refresh()
     this.onRefresh()
+    this.toastService.show('Votre formation a été supprimée du panier avec succé!', { classname: 'bg-success text-light', delay: 2000  });
+      
   }
-  passerCommande(p:Panier, sommePanier :Number) 
+  passerCommande(p:Panier, sommePanier :any) 
   {
    // console.log(this.storageService.lengthPanier());
     if(this.storageService.lengthPanier() == 0) 
     {
-      //toast
-      console.log("veullez ajouter au panier d'abord!");
+      this.toastService.show("Veuillez ajouter au panier d'abord!", { classname: 'bg-warning text-light', delay: 2000  });
+      
     }else
     {
        if (this.storageService.getUseconnected())
@@ -97,32 +100,36 @@ this.sommeTotal();
       ); 
 
       this.storageService.removePanier();
+      ///payment stripe
+      const paymentHandler = (<any>window).StripeCheckout.configure({
+        key:
+          'pk_test_51K9or8Jt4jQVeR1yWW6JNvzFHAN5pb10KULVFwhyHQQed40cFg7zv2IODDRp2Q3crnEiUpRjFk06FWYeP8otCJ7P00Ah7kZDlm',
+  
+        locale: 'auto',
+        token: function (stripeToken: any) {
+          console.log(stripeToken.card);
+          alert('Stripe token generated!');
+        },
+      });
+  
+      paymentHandler.open({
+        name: 'Technical Adda',
+        description: '4 Products Added',
+        amount: sommePanier * 100,
+      });
+      ///
     }
     else
     {
-      console.log("false");
+      this.toastService.show("Veuillez se connecter!", { classname: 'bg-warning text-dark', delay: 2000  });
+      
       this.router.navigate(['/login'])
     }
    }
   }
 
-  makePayment(amount: any) {
-    const paymentHandler = (<any>window).StripeCheckout.configure({
-      key:
-        'pk_test_51K9or8Jt4jQVeR1yWW6JNvzFHAN5pb10KULVFwhyHQQed40cFg7zv2IODDRp2Q3crnEiUpRjFk06FWYeP8otCJ7P00Ah7kZDlm',
+  makePayment() {
 
-      locale: 'auto',
-      token: function (stripeToken: any) {
-        console.log(stripeToken.card);
-        alert('Stripe token generated!');
-      },
-    });
-
-    paymentHandler.open({
-      name: 'Technical Adda',
-      description: '4 Products Added',
-      amount: amount * 100,
-    });
   }
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {

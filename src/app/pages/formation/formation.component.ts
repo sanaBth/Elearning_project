@@ -26,6 +26,7 @@ export class FormationComponent implements OnInit {
   userconnected : User;
   userId:string
   commande:Commande
+  role:User
   panier:any
   oneformation : []
       listpanier :Panier[]
@@ -39,7 +40,7 @@ export class FormationComponent implements OnInit {
     this.refresh();
     this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
     this.userId = JSON.parse(localStorage.getItem('userid') || 'null')
-  
+    this.role = JSON.parse(localStorage.getItem('role') || 'null')
   }
   onRefresh() {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false }
@@ -56,30 +57,36 @@ export class FormationComponent implements OnInit {
     if  (this.panier.length !=0 )
     {
       this.onRefresh()
-      console.log("panier plein");
+      //console.log("panier plein");
          if((this.panier.find(item => item._id === idformation)) === undefined)
         {
           this.storageService.storeOnpanier(oneformation)
           this.onRefresh()
+          this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-light', delay: 2000  });
         }
         else
         {
-          console.log("vous avez déga commandé cet formation");
+          this.toastService.show('Vous avez déjà commandée cet formation!', { classname: 'bg-warning text-light', delay: 2000  });
+         
           this.onRefresh()
         }  
      }
     else
     {
-     console.log("panier vide");
+    // console.log("panier vide");
      this.storageService.storeOnpanier(oneformation);
+     this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-light', delay: 2000  });
     } 
   }
   showSuccess()
   {
-    this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000  });
+    this.toastService.show('I am a success toast', { classname: 'bg-success text-body', delay: 2000  });
    
   }
-  
+  showStandard()
+  {
+    this.toastService.show('I am a standard toast');
+  }
   refresh()
   {
     return this.formationservice.getFormations().subscribe((data:any) => {

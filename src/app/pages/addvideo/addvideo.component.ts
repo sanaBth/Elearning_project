@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Video } from 'app/model/video';
 import { FormationDbService } from 'app/service/formation-db.service';
+import { ToastService } from 'app/service/toast.service';
 
 @Component({
   selector: 'app-addvideo',
@@ -17,7 +18,7 @@ formation:any
 arrayForm:Video = new Video ( '','','' ,'') 
 newformation:Video
   postForm : FormGroup;
-  constructor(   private route: ActivatedRoute,private router: Router,private formationservice : FormationDbService) { }
+  constructor( public toastService: ToastService,  private route: ActivatedRoute,private router: Router,private formationservice : FormationDbService) { }
 
   ngOnInit(): void {
     this.id =  this.route.snapshot.params.id;
@@ -74,7 +75,8 @@ newVideo()
   {
    this.formationservice.addVideo(formData,this.id).subscribe(
     (res)=>{console.log(res);
-      
+      this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-light', delay: 2000 });
+
       this.router.navigate(['/formation']);
     },
     (err)=>{console.log(err);
@@ -87,6 +89,8 @@ newVideo()
       this.newformation = data;
       console.log(this.newformation);
     });
+    this.toastService.show('Votre vidéo a été modifiée avec succé!', { classname: 'bg-success text-light', delay: 2000 });
+
     this.router.navigate(['/formation']);
     
   }

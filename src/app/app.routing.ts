@@ -19,6 +19,7 @@ import { PagesnotfoundComponent } from './pages/pagesnotfound/pagesnotfound.comp
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { PanierComponent } from './pages/panier/panier.component';
 import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.component';
+import { QuizComponent } from './pages/quiz/quiz.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'formation', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes =[
     { path: 'addformation/:id',             component: AddformationComponent ,canActivate:[AuthGuardGuard]},
     { path: 'addvideo',             component: AddvideoComponent ,canActivate:[AuthGuardGuard]},
     { path: 'addvideo/:id',             component: AddvideoComponent ,canActivate:[AuthGuardGuard]},
+    { path: 'addquiz',             component: QuizComponent ,canActivate:[AuthGuardGuard]},
     { path: 'listecommande',             component: ListeCommandeComponent ,canActivate:[AuthGuardGuard]},
     { path: 'panier',             component: PanierComponent },
     {path:'**', component:PagesnotfoundComponent},

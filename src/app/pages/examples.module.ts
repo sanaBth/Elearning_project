@@ -22,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component';
 import { PanierComponent } from './panier/panier.component';
 import { ListeCommandeComponent } from './liste-commande/liste-commande.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ListeCommandeComponent } from './liste-commande/liste-commande.componen
         PagesnotfoundComponent,
         PanierComponent,
         ListeCommandeComponent,
+        QuizComponent,
         
         
     ]

@@ -34,7 +34,7 @@ export class AddformationComponent implements OnInit {
         this.postForm.patchValue(this.arrayForm);
         //this.list = data.listVideo
         console.log(this.arrayForm.imagef);
-        
+
       });
     }
 
@@ -73,7 +73,7 @@ export class AddformationComponent implements OnInit {
       this.formationService.addFormation(formData).subscribe(
         (res) => {
           console.log(res);
-          this.toastService.show('Votre formation a été ajouté avec succé!', { classname: 'bg-success text-light', delay: 2000 });
+          this.toastService.show('Votre formation a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 
           this.router.navigate(['/formation']);
         },
@@ -89,7 +89,7 @@ export class AddformationComponent implements OnInit {
         this.newformation = data;
         console.log(this.newformation);
       });
-      this.toastService.show('Votre formation a été modifié avec succé!', { classname: 'bg-success text-light', delay: 2000 });
+      this.toastService.show('Votre formation a été modifiée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 
       this.router.navigate(['/formation']);
 

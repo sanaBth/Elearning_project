@@ -8,16 +8,16 @@
           type="text"
           class="form-control"
           [(ngModel)]="filterargs"
-          placeholder="nom formation"
+          placeholder="Nom formation"
         />
       </div>
     </div>
-    <button class="btn btn-success" (click)="showSuccess()">
+    <!--  <button class="btn btn-success" (click)="showSuccess()">
       Success toast
     </button>
     <button class="btn btn-primary" (click)="showStandard()">
       Standard toast
-    </button>
+    </button> -->
   </div>
   <div class="container px-4 px-lg-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -30,15 +30,22 @@
           />
 
           <div class="card-body">
-            <h5 class="card-title">{{ f.nom }}</h5>
-            <p class="card-text">
+            <h5 class="font-weight-bold card-title">
+              <h3>{{ f.nom }}</h3>
+            </h5>
+            <p class="card-text font-weight-normal">
               {{ f.description }}
             </p>
-            <p class="card-text">
-              {{ f.dure }}
+            <p class="card-text font-weight-normal">
+              <span class="font-weight-bold">Durée : </span> {{ f.dure }} Heure
             </p>
-            <p class="card-text">{{ f.prix }}€</p>
-            <p class="card-text">{{ f.nomformateur }}</p>
+            <p class="card-text font-weight-normal">
+              <span class="font-weight-bold">Prix :</span> {{ f.prix }} DT
+            </p>
+            <p class="card-text font-weight-normal">
+              <span class="font-weight-bold">Formateur :</span>
+              {{ f.nomformateur }}
+            </p>
             <p>
               <button
                 type="submit"

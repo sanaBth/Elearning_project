@@ -38,7 +38,7 @@ var
 	_jQuery = window.jQuery,
 
 	// Map over the $ in case of overwrite
-	_$ = window.$,
+	_ = window.$,
 
 	// [[Class]] -> type pairs
 	class2type = {},

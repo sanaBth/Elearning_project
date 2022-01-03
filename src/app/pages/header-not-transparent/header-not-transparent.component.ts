@@ -11,17 +11,17 @@ import { LocalstorageService } from 'app/service/localstorage.service';
 })
 export class HeaderNotTransparentComponent implements OnInit {
 
-  userconnected : User;
-  role:User
- p:Number
- panier:Panier
+  userconnected: User;
+  role: User
+  p: Number
+  panier: Panier
   constructor
-  (
-      private storageService :LocalstorageService , 
+    (
+      private storageService: LocalstorageService,
       private router: Router,
-      
-      ) {
-     
+
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -37,26 +37,22 @@ export class HeaderNotTransparentComponent implements OnInit {
       this.router.navigate([this.router.url])
     })
   }
-  lenghtpanier()
-  {
-    this.panier=this.storageService.getPanier();
-   
-    if (this.panier)
-    {
-       this.p=this.panier.length;
-   
-    }else
-    {
-       this.p = 0
+  lenghtpanier() {
+    this.panier = this.storageService.getPanier();
+
+    if (this.panier) {
+      this.p = this.panier.length;
+
+    } else {
+      this.p = 0
     }
-  //  this.onRefresh();
-    
+    //  this.onRefresh();
+
   }
-  logout()
-  {
-  this.storageService.logout();
-  this.onRefresh();
-  
+  logout() {
+    this.storageService.logout();
+    this.onRefresh();
+    this.router.navigate(['/home']);
 
   }
 

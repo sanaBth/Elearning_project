@@ -11,39 +11,36 @@ import { LocalstorageService } from 'app/service/localstorage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  
-  userconnected : User;
-  role:User
-  p:Number
-  panier:Panier
+
+  userconnected: User;
+  role: User
+  p: Number
+  panier: Panier
   constructor(
-      private storageService :LocalstorageService , 
-      private router: Router) {
-     
+    private storageService: LocalstorageService,
+    private router: Router) {
+
   }
 
   ngOnInit() {
-  
-      this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
-      this.role = JSON.parse(localStorage.getItem('role') || 'null')
- 
-      this.lenghtpanier();
+
+    this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
+    this.role = JSON.parse(localStorage.getItem('role') || 'null')
+
+    this.lenghtpanier();
 
   }
-  lenghtpanier()
-  {
-    this.panier=this.storageService.getPanier();
-  
-    if (this.panier)
-    {
-       this.p=this.panier.length;
-  
-    }else
-    {
-       this.p = 0
+  lenghtpanier() {
+    this.panier = this.storageService.getPanier();
+
+    if (this.panier) {
+      this.p = this.panier.length;
+
+    } else {
+      this.p = 0
     }
     //this.onRefresh();
-    
+
   }
   onRefresh() {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false }
@@ -53,10 +50,10 @@ export class HeaderComponent implements OnInit {
       this.router.navigate([this.router.url])
     })
   }
-  logout()
-{
-this.storageService.logout();
-this.onRefresh();
-}
+  logout() {
+    this.storageService.logout();
+    this.onRefresh();
+    this.router.navigate(['/home']);
+  }
 
 }

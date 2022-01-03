@@ -65,18 +65,12 @@ export class PanierComponent implements OnInit {
     } else {
       if (this.storageService.getUseconnected()) {
         for (let i = 0; i < p.length; i++) {
-
           this.id = p[i]._id
-          console.log(this.id);
           this.idformationpanier.push(this.id)
-
         }
         //affichage popup commande éffectué 
         this.userId = this.storageService.getUseId()
-        console.log(this.userId);
-
         this.cmd.iduser = this.userId
-
         this.cmd.sommetotal = sommePanier
         this.cmd.idformation = this.idformationpanier
 
@@ -91,7 +85,9 @@ export class PanierComponent implements OnInit {
           }
         );
 
-        this.storageService.removePanier();
+        var k = this.storageService;
+        var toast = this.toastService;
+        var monpanier = this.panier
         ///payment stripe
         const paymentHandler = (<any>window).StripeCheckout.configure({
           key:
@@ -100,16 +96,19 @@ export class PanierComponent implements OnInit {
           locale: 'auto',
           token: function (stripeToken: any) {
             console.log(stripeToken.card);
-            alert('Stripe token generated!');
+            k.removePanier()
+            toast.show("Votre paiement a été éffectué avec succé!", { classname: 'bg-succes text-white font-weight-bold px-2 py-1', delay: 2000 })
+            console.log(this.this.panier);
           },
-        });
-
+        }
+        );
         paymentHandler.open({
-          name: 'Technical Adda',
-          description: '4 Products Added',
+          name: 'Paiement en ligne',
+          //description: '4 Products Added',
           amount: sommePanier * 100,
         });
         ///
+        // this.storageService.removePanier();
       }
       else {
         this.toastService.show("Veuillez se connecter!", { classname: 'bg-warning text-white font-weight-bold px-2 py-1', delay: 2000 });
@@ -129,6 +128,8 @@ export class PanierComponent implements OnInit {
       script.type = 'text/javascript';
       script.src = 'https://checkout.stripe.com/checkout.js';
       window.document.body.appendChild(script);
+      console.log('test0');
     }
+    console.log('test1');
   }
 }

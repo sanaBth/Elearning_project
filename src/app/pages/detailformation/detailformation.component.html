@@ -11,7 +11,7 @@
       <p class="card-text">{{ detailsformation.prix }} DT</p>
       <p class="card-text">{{ detailsformation.nomformateur }}</p>
       <div *ngFor="let v of detailsformation.listVideo">
-        <video width="320" height="240" controls>
+        <video width="320" height="240" controls *ngIf="ok">
           <source
             src="http://localhost:4001/uploads/{{ v.lienVideo }}"
             class="card-img-top"

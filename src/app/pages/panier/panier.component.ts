@@ -87,12 +87,6 @@ export class PanierComponent implements OnInit {
             //notification error
           }
         );
-
-
-        var k = this.storageService;
-        var toast = this.toastService;
-        var monpanier = this.panier
-
         ///payment stripe
         const paymentHandler = (<any>window).StripeCheckout.configure({
           key:
@@ -101,19 +95,23 @@ export class PanierComponent implements OnInit {
           locale: 'auto',
           token: function (stripeToken: any) {
             console.log(stripeToken.card);
-            //  k.removePanier()
-            toast.show("Votre paiement a été éffectué avec succé!", { classname: 'bg-succes text-white font-weight-bold px-2 py-1', delay: 2000 })
-            //    console.log(this.this.panier);
+            viderpanier();
+
           },
         }
         );
+        const viderpanier = () => {
+          this.storageService.removePanier();
+          this.panier = this.storageService.getPanier();
+          this.toastService.show("Votre paiement est éffectué avec succé!", { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 2000 });
+          this.onRefresh();
+        }
         paymentHandler.open({
           name: 'Paiement en ligne',
           //description: '4 Products Added',
           amount: sommePanier * 100,
         });
-        ///
-        // this.storageService.removePanier();
+
       }
       else {
         this.toastService.show("Veuillez se connecter!", { classname: 'bg-warning text-white font-weight-bold px-2 py-1', delay: 2000 });
@@ -121,10 +119,6 @@ export class PanierComponent implements OnInit {
         this.router.navigate(['/login'])
       }
     }
-  }
-
-  makePayment() {
-
   }
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {

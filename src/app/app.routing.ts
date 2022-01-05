@@ -22,6 +22,7 @@ import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.co
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { ProfiluserComponent } from './pages/profiluser/profiluser.component';
 import { UserGuard } from './guard/user.guard';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'formation', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'login', component: SignupComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: LandingComponent },
+  { path: 'index', component: HomeComponent },
   { path: 'formation', component: FormationComponent },
   { path: 'formation/:id', component: DetailformationComponent },
   { path: 'nucleoicons', component: NucleoiconsComponent },

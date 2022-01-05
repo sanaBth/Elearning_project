@@ -35,9 +35,16 @@ export class FormationDbService {
     )
   }
 
-  //get une formation
+  //get une formation avec liste video
   getOneformation(id: string) {
     return this.httpClient.get(`${this.api_url}/formation/details/${id}`)/* .pipe(
+      catchError(this.handleError)
+    ) */
+  }
+
+  //get une formation
+  getOneformationwv(id: string) {
+    return this.httpClient.get(`${this.api_url}/formation/detailv/${id}`)/* .pipe(
       catchError(this.handleError)
     ) */
   }

@@ -24,6 +24,7 @@ import { PanierComponent } from './panier/panier.component';
 import { ListeCommandeComponent } from './liste-commande/liste-commande.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { ProfiluserComponent } from './profiluser/profiluser.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ProfiluserComponent } from './profiluser/profiluser.component';
         ListeCommandeComponent,
         QuizComponent,
         ProfiluserComponent,
+        HomeComponent,
         
         
     ]

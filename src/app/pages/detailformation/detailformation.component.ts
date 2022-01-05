@@ -16,53 +16,57 @@ export class DetailformationComponent implements OnInit {
   detailVideo: []
   listVideo: []
   nom: string
-  id: string
+  id: any
   public list: []
   lengthList: number
   public listlien: []
   userId: string
-  userdata: User
-  mescours: any;
+  userdata: User[]
+  mescours: any[] = []
+  listcours: any
+  array: string
+  idcours: string[]
+  ok: boolean
   constructor(private userservice: LearningDbService, private storageService: LocalstorageService, private router: Router, private route: ActivatedRoute, private formationservice: FormationDbService) { }
 
   ngOnInit(): void {
     this.i = this.route.snapshot.params.id;
-    //this.myformation(this.i)
-    this.formationservice.getOneformation(this.i).subscribe((data: any) => {
+    this.myformation(this.i)
+    /* this.formationservice.getOneformation(this.i).subscribe((data: any) => {
       this.detailsformation = data;
-      //this.list = data.listVideo
-      console.log(this.detailsformation);
+      //console.log(this.detailsformation);
 
-    });
+    }); */
   }
 
   //test si cet formation est acheté ou non
-  myformation(id: string) {
+  myformation(idf: string) {
     this.userId = this.storageService.getUseId()
     this.userservice.getprofil(this.userId).subscribe((data: any) => {
-      this.userdata = data;
-      console.log(this.userdata.cours[0]);
-      for (let i = 0; i < this.userdata.cours.length; i++) {
-        this.id = this.userdata.cours[0]._id
-        this.mescours.push(this.id)
-        //console.log(this.userdata.cours[i])
-
+      this.listcours = data.cours
+      for (let i = 0; i < this.listcours.length; i++) {
+        this.mescours.push(this.listcours[i]._id)
       }
-      this.userdata.cours.forEach(element => {
-        console.log(element);
+      if (this.mescours.filter(item => item == idf).length != 0) {
+        this.ok = true;
+        console.log("formationavecvideo");
+        this.formationservice.getOneformation(this.i).subscribe((data: any) => {
+          this.detailsformation = data;
+          //console.log(this.detailsformation);
 
-        this.mescours.push(element);
+        });
+      } else {
+        this.ok = false;
+        this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
+          console.log("formation sansavecvideo");
 
-      });
+          this.detailsformation = data;
+          //console.log(this.detailsformation);
 
-      console.log(this.mescours);
+        });
+      }
+
     });
-    for (let item of this.mescours) {
-      console.log(item);
-      //if (this.i == item._id) { console.log("hello"); }
-
-
-    }
 
   }
   delvideo(id: string) {

@@ -6,20 +6,19 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private router: Router) { }
-  public roleofuser: User
+  public userconnected: User
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    this.roleofuser = JSON.parse(localStorage.getItem('role') || 'null');
+    this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null');
 
-    if (this.roleofuser) {
+    if (this.userconnected) {
 
       return true;
     }
     this.router.navigate(['/home'])
     return false;
   }
-
 }

@@ -1,0 +1,45 @@
+<app-header-not-transparent></app-header-not-transparent>
+<div class="container">
+  <div class="row bluecolor">
+    <div class="offset-md-2 col-md-8">
+      <img
+        width="100%"
+        src="assets/img/myprofile.png"
+        class="img-fluid"
+        alt="..."
+      />
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div
+      class="card mb-3 mx-4"
+      style="max-width: 540px"
+      *ngFor="let c of userdata.cours"
+    >
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img
+            src="http://localhost:4001/uploads/{{ c.imagef }}"
+            class="card-img"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{ c.nom }}</h5>
+            <p class="card-text">
+              {{ c.description }}
+            </p>
+            <p class="card-text">
+              <a
+                (click)="detailpage(c._id)"
+                class="btn btn-link btn-info float-right"
+                >Voir la formation</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

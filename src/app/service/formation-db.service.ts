@@ -12,77 +12,68 @@ import { pipe, of, forkJoin } from 'rxjs/index';
 })
 export class FormationDbService {
 
-  api_url: string = 'http://localhost:4000';
-  
-  constructor(private httpClient: HttpClient,public router: Router) { }
+  api_url: string = 'http://localhost:4001';
+
+  constructor(private httpClient: HttpClient, public router: Router) { }
 
   //get liste des formations
-  getFormations()
-  {
+  getFormations() {
     return this.httpClient.get(`${this.api_url}/formation/getformation`);
   }
-  
+
   //ajouter un formation
-  addFormation(form:FormData): Observable<any>
-  {
-    return this.httpClient.post(`${this.api_url}/formation/add`,form).pipe(
+  addFormation(form: FormData): Observable<any> {
+    return this.httpClient.post(`${this.api_url}/formation/add`, form).pipe(
       catchError(this.handleError)
     )
   }
 
-//ajouter un vidéo
-  addVideo(form:FormData, id:string): Observable<any>
-  {
-    return this.httpClient.post(`${this.api_url}/video/add/${id}`,form).pipe(
+  //ajouter un vidéo
+  addVideo(form: FormData, id: string): Observable<any> {
+    return this.httpClient.post(`${this.api_url}/video/add/${id}`, form).pipe(
       catchError(this.handleError)
     )
   }
-  
+
   //get une formation
-  getOneformation(id:string)
-  {
+  getOneformation(id: string) {
     return this.httpClient.get(`${this.api_url}/formation/details/${id}`)/* .pipe(
       catchError(this.handleError)
     ) */
   }
   //get une vidéo
-  getOnevideo(id:string)
-  {
+  getOnevideo(id: string) {
     return this.httpClient.get(`${this.api_url}/video/details/${id}`).pipe(
       catchError(this.handleError)
     )
   }
 
-    //update video
-    upvideo(form:FormData,id:string)
-    {
-      return this.httpClient.put(`${this.api_url}/video/update/${id}`,form)/* .pipe(
+  //update video
+  upvideo(form: FormData, id: string) {
+    return this.httpClient.put(`${this.api_url}/video/update/${id}`, form)/* .pipe(
         catchError(this.handleError)
       ) */
-    }
+  }
 
   //update formation
-  upformation(form:FormData,id:string)
-  {
-    return this.httpClient.put(`${this.api_url}/formation/update/${id}`,form)/* .pipe(
+  upformation(form: FormData, id: string) {
+    return this.httpClient.put(`${this.api_url}/formation/update/${id}`, form)/* .pipe(
       catchError(this.handleError)
     ) */
   }
- //delete une formation
- delFormation(id:string)
- {
-   return this.httpClient.delete(`${this.api_url}/formation/delete/${id}`).subscribe(data => {
-    console.log(data);
-  });
- }
-  
- //delete un video
- delvideo(id:string)
- {
-   return this.httpClient.delete(`${this.api_url}/video/delete/${id}`).subscribe(data => {
-    console.log(data);
-  });
- }
+  //delete une formation
+  delFormation(id: string) {
+    return this.httpClient.delete(`${this.api_url}/formation/delete/${id}`).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  //delete un video
+  delvideo(id: string) {
+    return this.httpClient.delete(`${this.api_url}/video/delete/${id}`).subscribe(data => {
+      console.log(data);
+    });
+  }
 
 
   handleError(error: HttpErrorResponse) {

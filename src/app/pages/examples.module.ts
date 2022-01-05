@@ -23,6 +23,7 @@ import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component'
 import { PanierComponent } from './panier/panier.component';
 import { ListeCommandeComponent } from './liste-commande/liste-commande.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { ProfiluserComponent } from './profiluser/profiluser.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { QuizComponent } from './quiz/quiz.component';
         PanierComponent,
         ListeCommandeComponent,
         QuizComponent,
+        ProfiluserComponent,
         
         
     ]

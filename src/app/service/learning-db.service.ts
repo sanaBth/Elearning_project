@@ -7,28 +7,34 @@ import { User } from 'app/model/user';
 })
 export class LearningDbService {
 
-  api_url: string = 'http://localhost:4000';
-  
-  constructor(private httpClient: HttpClient,public router: Router) { }
+  api_url: string = 'http://localhost:4001';
+
+  constructor(private httpClient: HttpClient, public router: Router) { }
 
   // Sign-in
   login(user: User) {
     return this.httpClient.post<any>(`${this.api_url}/apiuser/login`, user);
-    
+
   }
   //register
-  register(user: User){
+  register(user: User) {
     return this.httpClient.post(`${this.api_url}/apiuser/register`, user);
   }
-//send mail forgot password
+  //send mail forgot password
   forgotPassword(email: string) {
-    return this.httpClient.post(`${this.api_url}/apiuser/forgot`,  email );
-}
+    return this.httpClient.post(`${this.api_url}/apiuser/forgot`, email);
+  }
 
-//reset password
-resetpassword(id:string,token:string,password:string)
-{
-  return this.httpClient.post(`${this.api_url}/apiuser/${id}/${token}`,  {password} );
-}
+  //reset password
+  resetpassword(id: string, token: string, password: string) {
+    return this.httpClient.post(`${this.api_url}/apiuser/${id}/${token}`, { password });
+  }
+
+  //get my profil
+  getprofil(id: string) {
+    return this.httpClient.get(`${this.api_url}/apiuser/details/${id}`)/* .pipe(
+      catchError(this.handleError)
+    ) */
+  }
 
 }

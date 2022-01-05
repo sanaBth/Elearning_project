@@ -10,16 +10,15 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class AdministratorService {
 
-  api_url: string = 'http://localhost:4000';
+  api_url: string = 'http://localhost:4001';
 
-  constructor(private httpClient: HttpClient,public router: Router) { }
-  
+  constructor(private httpClient: HttpClient, public router: Router) { }
 
-    //get list commande
-    getcommandes()
-    {
-      return this.httpClient.get(`${this.api_url}/commande/all`);
-    }
+
+  //get list commande
+  getcommandes() {
+    return this.httpClient.get(`${this.api_url}/commande/all`);
+  }
 
   handleError(error: HttpErrorResponse) {
     let msg = '';

@@ -9,33 +9,35 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-api_url: string = 'http://localhost:4000';
+  api_url: string = 'http://localhost:4001';
 
-  constructor(private httpClient: HttpClient,public router: Router) { }
-  
-//add to cart
-addTocommande(iduser:string,commande:Commande) 
-{
-  console.log(commande);
- 
-  return this.httpClient.post(`${this.api_url}/commande/add/${iduser}`,commande).pipe(
-    catchError(this.handleError)
-  )
-}
+  constructor(private httpClient: HttpClient, public router: Router) { }
 
-
-
-handleError(error: HttpErrorResponse) {
-  let msg = '';
-  if (error.error instanceof ErrorEvent) {
-    // client-side error
-    msg = error.error.message;
-  } else {
-    // server-side error
-    msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  //add to cart
+  addTocommande(iduser: string, commande: Commande) {
+    return this.httpClient.post(`${this.api_url}/commande/add/${iduser}`, commande).pipe(
+      catchError(this.handleError)
+    )
   }
-  return throwError(msg);
-}
+  //add formation to users
+  addToUser(iduser: string, idform: string[]) {
+    return this.httpClient.put(`${this.api_url}/apiuser/user/${iduser}/${idform}`, null).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
+  }
 
 
 

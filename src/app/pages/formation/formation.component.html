@@ -12,19 +12,13 @@
         />
       </div>
     </div>
-    <!--  <button class="btn btn-success" (click)="showSuccess()">
-      Success toast
-    </button>
-    <button class="btn btn-primary" (click)="showStandard()">
-      Standard toast
-    </button> -->
   </div>
   <div class="container px-4 px-lg-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div class="col" *ngFor="let f of formation | myfilter: filterargs">
         <div class="card">
           <img
-            src="http://localhost:4000/uploads/{{ f.imagef }}"
+            src="http://localhost:4001/uploads/{{ f.imagef }}"
             class="card-img-top"
             alt="..."
           />

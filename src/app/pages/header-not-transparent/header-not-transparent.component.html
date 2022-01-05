@@ -4,13 +4,7 @@
   >
     <a
       routerLink="/home"
-      class="
-        d-flex
-        align-items-center
-        mb-3 mb-md-0
-        me-md-auto
-        text-dark text-decoration-none
-      "
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
     >
       <span class="fs-4">Cours en ligne</span>
     </a>
@@ -57,7 +51,7 @@
             aria-labelledby="dropdownBasic1"
             class="dropdown-primary"
           >
-            <a class="dropdown-item">Profile</a>
+            <a class="dropdown-item" routerLink="/myprofile">Mon profil</a>
             <a class="dropdown-item" type="submit" (click)="logout()"
               >Déconnexion</a
             >

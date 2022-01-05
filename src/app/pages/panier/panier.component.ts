@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Commande } from 'app/model/commande';
 import { Panier } from 'app/model/panier';
 import { CartService } from 'app/service/cart.service';
+import { LearningDbService } from 'app/service/learning-db.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
 import { ToastService } from 'app/service/toast.service';
 
@@ -22,7 +23,8 @@ export class PanierComponent implements OnInit {
   sommePanier: Number
   constructor(private storageService: LocalstorageService,
     private router: Router,
-    private cartService: CartService, public toastService: ToastService
+    private cartService: CartService, public toastService: ToastService,
+    private userservice: LearningDbService,
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +76,7 @@ export class PanierComponent implements OnInit {
         this.cmd.sommetotal = sommePanier
         this.cmd.idformation = this.idformationpanier
 
+        //add to commande
         this.cartService.addTocommande(this.userId, this.cmd).subscribe(
           (res) => {
             console.log(res);
@@ -85,9 +88,11 @@ export class PanierComponent implements OnInit {
           }
         );
 
+
         var k = this.storageService;
         var toast = this.toastService;
         var monpanier = this.panier
+
         ///payment stripe
         const paymentHandler = (<any>window).StripeCheckout.configure({
           key:
@@ -96,9 +101,9 @@ export class PanierComponent implements OnInit {
           locale: 'auto',
           token: function (stripeToken: any) {
             console.log(stripeToken.card);
-            k.removePanier()
+            //  k.removePanier()
             toast.show("Votre paiement a été éffectué avec succé!", { classname: 'bg-succes text-white font-weight-bold px-2 py-1', delay: 2000 })
-            console.log(this.this.panier);
+            //    console.log(this.this.panier);
           },
         }
         );

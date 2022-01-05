@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ComponentsComponent } from './components/components.component';
@@ -20,29 +20,32 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { PanierComponent } from './pages/panier/panier.component';
 import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
+import { ProfiluserComponent } from './pages/profiluser/profiluser.component';
+import { UserGuard } from './guard/user.guard';
 
-const routes: Routes =[
-    { path: '', redirectTo: 'formation', pathMatch: 'full' },
+const routes: Routes = [
+  { path: '', redirectTo: 'formation', pathMatch: 'full' },
 
-    { path: 'landing',             component: ComponentsComponent },
-    { path: 'user-profile',     component: ProfileComponent },
-    { path: 'login',           component: SignupComponent },
-    { path: 'register',           component: RegisterComponent },
-    { path: 'home',          component: LandingComponent },
-    { path: 'formation',          component: FormationComponent },
-    { path: 'formation/:id',          component: DetailformationComponent },
-    { path: 'nucleoicons',      component: NucleoiconsComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'resetpassword/:id/:token', component: ResetpasswordComponent },
-    { path: 'formation', component: FormationComponent },
-    { path: 'addformation',             component: AddformationComponent, canActivate:[AuthGuardGuard] },
-    { path: 'addformation/:id',             component: AddformationComponent ,canActivate:[AuthGuardGuard]},
-    { path: 'addvideo',             component: AddvideoComponent ,canActivate:[AuthGuardGuard]},
-    { path: 'addvideo/:id',             component: AddvideoComponent ,canActivate:[AuthGuardGuard]},
-    { path: 'addquiz',             component: QuizComponent ,canActivate:[AuthGuardGuard]},
-    { path: 'listecommande',             component: ListeCommandeComponent ,canActivate:[AuthGuardGuard]},
-    { path: 'panier',             component: PanierComponent },
-    {path:'**', component:PagesnotfoundComponent},
+  { path: 'landing', component: ComponentsComponent },
+  { path: 'user-profile', component: ProfileComponent },
+  { path: 'login', component: SignupComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: LandingComponent },
+  { path: 'formation', component: FormationComponent },
+  { path: 'formation/:id', component: DetailformationComponent },
+  { path: 'nucleoicons', component: NucleoiconsComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'resetpassword/:id/:token', component: ResetpasswordComponent },
+  { path: 'formation', component: FormationComponent },
+  { path: 'addformation', component: AddformationComponent, canActivate: [AuthGuardGuard] },
+  { path: 'addformation/:id', component: AddformationComponent, canActivate: [AuthGuardGuard] },
+  { path: 'addvideo', component: AddvideoComponent, canActivate: [AuthGuardGuard] },
+  { path: 'addvideo/:id', component: AddvideoComponent, canActivate: [AuthGuardGuard] },
+  { path: 'addquiz', component: QuizComponent, canActivate: [AuthGuardGuard] },
+  { path: 'listecommande', component: ListeCommandeComponent, canActivate: [AuthGuardGuard] },
+  { path: 'myprofile', component: ProfiluserComponent, canActivate: [UserGuard] },
+  { path: 'panier', component: PanierComponent },
+  { path: '**', component: PagesnotfoundComponent },
 ];
 
 @NgModule({
@@ -50,6 +53,6 @@ const routes: Routes =[
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

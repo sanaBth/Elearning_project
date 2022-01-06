@@ -4,13 +4,10 @@
   <div class="row">
     <div class="card" style="width: 100%">
       <div class="card-header">
-        <h5>Liste Commandes</h5>
+        <h5><dt>Liste Commandes</dt></h5>
       </div>
       <div class="row">
-        <div class="col mt-2">
-          <dt>Réf</dt>
-        </div>
-        <div class="col mt-2">
+        <div class="ml-4 col mt-2">
           <dt>Email</dt>
         </div>
         <div class="col mt-2">
@@ -19,15 +16,9 @@
         <div class="col mt-2">
           <dt>Montant</dt>
         </div>
-        <div class="col mt-2">
-          <dt>Etat</dt>
-        </div>
       </div>
       <div class="row" *ngFor="let c of listcommande; let i = index">
-        <div class="col mt-2">
-          <dt>{{ c._id }}</dt>
-        </div>
-        <div class="col mt-2">
+        <div class="ml-4 col mt-2">
           <dt>{{ c.iduser.email }}</dt>
         </div>
         <div class="col mt-2">
@@ -37,7 +28,7 @@
         <div class="col mt-2">
           <dt>{{ c.sommetotal }} DT</dt>
         </div>
-        <div class="col mt-1 mb-1"></div>
+
         <hr />
       </div>
       <hr />

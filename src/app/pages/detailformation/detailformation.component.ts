@@ -30,7 +30,11 @@ export class DetailformationComponent implements OnInit {
   constructor(private userservice: LearningDbService, private storageService: LocalstorageService, private router: Router, private route: ActivatedRoute, private formationservice: FormationDbService) { }
 
   ngOnInit(): void {
-    this.i = this.route.snapshot.params.id;
+    //this.i = this.route.snapshot.params.id;
+    this.route.paramMap.subscribe(params => {
+      this.i = params.get("id")
+
+    });
     this.myformation(this.i)
     /* this.formationservice.getOneformation(this.i).subscribe((data: any) => {
       this.detailsformation = data;
@@ -48,21 +52,12 @@ export class DetailformationComponent implements OnInit {
         this.mescours.push(this.listcours[i]._id)
       }
       if (this.mescours.filter(item => item == idf).length != 0) {
-        this.ok = true;
-        console.log("formationavecvideo");
         this.formationservice.getOneformation(this.i).subscribe((data: any) => {
           this.detailsformation = data;
-          //console.log(this.detailsformation);
-
         });
       } else {
-        this.ok = false;
         this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
-          console.log("formation sansavecvideo");
-
           this.detailsformation = data;
-          //console.log(this.detailsformation);
-
         });
       }
 

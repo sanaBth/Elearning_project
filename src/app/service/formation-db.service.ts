@@ -12,7 +12,7 @@ import { pipe, of, forkJoin } from 'rxjs/index';
 })
 export class FormationDbService {
 
-  api_url: string = 'http://localhost:4001';
+  api_url: string = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

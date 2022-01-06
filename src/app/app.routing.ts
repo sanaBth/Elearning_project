@@ -23,6 +23,7 @@ import { QuizComponent } from './pages/quiz/quiz.component';
 import { ProfiluserComponent } from './pages/profiluser/profiluser.component';
 import { UserGuard } from './guard/user.guard';
 import { HomeComponent } from './pages/home/home.component';
+import { UserlistComponent } from './pages/userlist/userlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'formation', pathMatch: 'full' },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'resetpassword/:id/:token', component: ResetpasswordComponent },
   { path: 'formation', component: FormationComponent },
   { path: 'addformation', component: AddformationComponent, canActivate: [AuthGuardGuard] },
+  { path: 'listuser', component: UserlistComponent, canActivate: [AuthGuardGuard] },
+
   { path: 'addformation/:id', component: AddformationComponent, canActivate: [AuthGuardGuard] },
   { path: 'addvideo', component: AddvideoComponent, canActivate: [AuthGuardGuard] },
   { path: 'addvideo/:id', component: AddvideoComponent, canActivate: [AuthGuardGuard] },

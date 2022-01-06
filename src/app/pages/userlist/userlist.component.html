@@ -1,0 +1,49 @@
+<app-header-not-transparent></app-header-not-transparent>
+
+<div class="container">
+  <div class="row">
+    <div class="card" style="width: 100%">
+      <div class="card-header">
+        <h5><dt>Liste utilisateurs</dt></h5>
+      </div>
+      <div class="row">
+        <div class="ml-4 col mt-2">
+          <dt>Nom utilisateurs</dt>
+        </div>
+        <div class="ml-4 col mt-2">
+          <dt>Email</dt>
+        </div>
+        <div class="ml-4 col mt-2">
+          <dt>Rôle</dt>
+        </div>
+        <div class="ml-4 col mt-2">
+          <dt>Etat</dt>
+        </div>
+      </div>
+      <div class="row" *ngFor="let c of listusers">
+        <div class="ml-4 col mt-2">
+          <dt>{{ c.username }}</dt>
+        </div>
+        <div class="col mt-2">
+          <dt>{{ c.email }}</dt>
+        </div>
+        <div class="col mt-2" *ngIf="c.role">
+          <dt>Administrateur</dt>
+        </div>
+        <div class="col mt-2" *ngIf="!c.role">
+          <dt>Simple utilisateur</dt>
+        </div>
+        <div class="col mt-1 mb-1">
+          <a
+            class="btn btn-link btn-primary"
+            *ngIf="!c.role"
+            (click)="changerole(c._id)"
+            >Changer rôle</a
+          >
+        </div>
+        <hr />
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from 'app/model/user';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class LearningDbService {
 
-  api_url: string = 'http://localhost:4001';
+  api_url: string = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 
@@ -37,4 +39,27 @@ export class LearningDbService {
     ) */
   }
 
+  //get all users all users
+  getusers() {
+    return this.httpClient.get(`${this.api_url}/apiuser/allusers`);
+  }
+
+  //change role user to true
+  updateUser(id: string) {
+    return this.httpClient.put(`${this.api_url}/apiuser/role/${id}`, null).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
+  }
 }

@@ -3,24 +3,26 @@
   <div class="row">
     <div class="col-md-9">
       <img
-        src="http://localhost:4001/uploads/{{ detailsformation.imagef }}"
+        src="http://localhost:3000/uploads/{{ detailsformation?.imagef }}"
         class="card-img-top"
         alt="..."
       />
-      <h5 class="card-title">{{ detailsformation.nom }}</h5>
-      <p class="card-text">{{ detailsformation.prix }} DT</p>
-      <p class="card-text">{{ detailsformation.nomformateur }}</p>
-      <div *ngFor="let v of detailsformation.listVideo">
-        <video width="320" height="240" controls *ngIf="ok">
+      <h5 class="card-title">{{ detailsformation?.nom }}</h5>
+      <p class="card-text">{{ detailsformation?.prix }} DT</p>
+      <p class="card-text">{{ detailsformation?.nomformateur }}</p>
+      <div *ngFor="let v of detailsformation?.listVideo">
+        <video width="320" height="240" controls>
           <source
-            src="http://localhost:4001/uploads/{{ v.lienVideo }}"
+            src="http://localhost:3000/uploads/{{ v?.lienVideo }}"
             class="card-img-top"
             type="video/mp4"
           />
           Browser not supported
         </video>
+        <p class="card-text">{{ v?.name }}</p>
         <p>
           <button
+            *ngIf="role"
             type="button"
             class="btn btn-warning btn-round"
             (click)="upvideo(v._id)"
@@ -28,6 +30,7 @@
             Modifier
           </button>
           <button
+            *ngIf="role"
             type="button"
             class="btn btn-danger btn-round"
             (click)="delvideo(v._id)"

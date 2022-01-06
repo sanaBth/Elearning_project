@@ -19,7 +19,7 @@ export class ProfiluserComponent implements OnInit {
     this.userId = this.storageService.getUseId();
     this.userservice.getprofil(this.userId).subscribe((data: any) => {
       this.userdata = data;
-      console.log(this.userdata);
+
     });
 
   }

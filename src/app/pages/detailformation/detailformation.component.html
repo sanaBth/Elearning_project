@@ -1,17 +1,19 @@
 <app-header-not-transparent></app-header-not-transparent>
 <div class="container-fluid">
-  <div class="row">
+  <div class="mt-5 row">
     <div class="col-md-9">
       <img
         src="http://localhost:4001/uploads/{{ detailsformation?.imagef }}"
-        class="card-img-top"
-        alt="..."
+        class="img-fluid"
       />
-      <h5 class="card-title">{{ detailsformation?.nom }}</h5>
-      <p class="card-text">{{ detailsformation?.prix }} DT</p>
-      <p class="card-text">{{ detailsformation?.nomformateur }}</p>
+      <h5 class="mt-2 card-title">
+        <dt>{{ detailsformation?.nom }}</dt>
+      </h5>
+      <p class="card-text">Prix : {{ detailsformation?.prix }} DT</p>
+      <p class="card-text">Formateur : {{ detailsformation?.nomformateur }}</p>
+      <p class="card-text">{{ detailsformation?.description }}</p>
       <div *ngFor="let v of detailsformation?.listVideo">
-        <video width="320" height="240" controls>
+        <video width="320" height="240" controls *ngIf="role; ok">
           <source
             src="http://localhost:4001/uploads/{{ v?.lienVideo }}"
             class="card-img-top"

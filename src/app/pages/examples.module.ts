@@ -9,7 +9,6 @@ import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './login/signup.component';
 import { RegisterComponent } from './register/register.component';
-import { HeaderComponent } from './header/header.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { FormationComponent } from './formation/formation.component';
@@ -45,7 +44,6 @@ import { UserlistComponent } from './userlist/userlist.component';
         SignupComponent,
         ProfileComponent,
         RegisterComponent,
-        HeaderComponent,
         ForgotPasswordComponent,
         ResetpasswordComponent,
         FormationComponent,

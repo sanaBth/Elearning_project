@@ -38,22 +38,18 @@ export class HeaderNotTransparentComponent implements OnInit {
     })
   }
   lenghtpanier() {
+    // this.onRefresh();
     this.panier = this.storageService.getPanier();
-
     if (this.panier) {
       this.p = this.panier.length;
-
     } else {
       this.p = 0
     }
-    //  this.onRefresh();
-
   }
   logout() {
     this.storageService.logout();
     this.onRefresh();
     this.router.navigate(['/home']);
-
   }
 
 }

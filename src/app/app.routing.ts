@@ -25,15 +25,15 @@ import { UserlistComponent } from './pages/userlist/userlist.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'formation', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: 'landing', component: ComponentsComponent },
-  { path: 'user-profile', component: ProfileComponent },
+  /*  { path: 'user-profile', component: ProfileComponent }, */
   { path: 'login', component: SignupComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
 
-  { path: 'formation', component: FormationComponent },
+  /* { path: 'formation', component: FormationComponent }, */
   { path: 'formation/:id', component: DetailformationComponent },
   { path: 'nucleoicons', component: NucleoiconsComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

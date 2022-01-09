@@ -48,13 +48,16 @@ export class DetailformationComponent implements OnInit {
         this.mescours.push(this.listcours[i]._id)
       }
       if (this.mescours.filter(item => item == idf).length != 0) {
+
         this.formationservice.getOneformation(this.i).subscribe((data: any) => {
           this.detailsformation = data;
         });
+        this.ok == true;
       } else {
         this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
           this.detailsformation = data;
         });
+        this.ok == false;
       }
 
     });

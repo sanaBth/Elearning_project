@@ -54,37 +54,40 @@ export class HomeComponent implements OnInit {
   }
   displayButton(idf: string) {
     this.userId = this.storageService.getUseId()
-    this.mescours = this.storageService.getCoursid()
-    if (this.mescours.filter(item => item == idf).length != 0) {
-      return !this.buttontrue;
 
+    if (this.userId) {
+      this.mescours = this.storageService.getCoursid()
+      if (this.mescours.filter(item => item == idf).length != 0) {
+        return !this.buttontrue;
+
+      } else {
+        return this.buttontrue;
+      }
     } else {
       return this.buttontrue;
     }
 
-
   }
   addtoCart(oneformation: Formation, idformation: string) {
+
     this.panier = this.storageService.getPanier();
+    this.onRefresh();
     //console.log(this.panier);
     if (this.panier.length != 0) {
-      this.onRefresh()
-      //console.log("panier plein");
       if ((this.panier.find(item => item._id === idformation)) === undefined) {
-        this.storageService.storeOnpanier(oneformation)
-        this.onRefresh()
+        this.storageService.storeOnpanier(oneformation);
         this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+        this.onRefresh();
       }
       else {
         this.toastService.show('Vous avez déjà commandée cet formation!', { classname: 'bg-warning text-white font-weight-bold px-2 py-1', delay: 2000 });
-
         this.onRefresh()
       }
     }
     else {
-      // console.log("panier vide");
       this.storageService.storeOnpanier(oneformation);
       this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+      this.onRefresh()
     }
   }
   refresh() {

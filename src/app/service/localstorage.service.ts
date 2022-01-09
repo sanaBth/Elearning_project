@@ -35,6 +35,7 @@ export class LocalstorageService {
     localStorage.removeItem('userid')
     localStorage.removeItem('email')
     localStorage.removeItem('role')
+    localStorage.removeItem('coursId')
   }
 
   gettoken() {

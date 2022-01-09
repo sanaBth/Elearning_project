@@ -7,6 +7,7 @@ import { Formation } from 'app/model/formation';
 import { Panier } from 'app/model/panier';
 import { User } from 'app/model/user';
 import { FormationDbService } from 'app/service/formation-db.service';
+import { LearningDbService } from 'app/service/learning-db.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
 import { ToastService } from 'app/service/toast.service';
 @Component({
@@ -27,17 +28,21 @@ export class HomeComponent implements OnInit {
   commande: Commande
   role: User
   panier: any
+  listcours: any
   oneformation: []
   listpanier: Panier[]
+  mescours: any[] = []
+  buttontrue: boolean = true
   constructor(private formationservice: FormationDbService,
     private storageService: LocalstorageService,
-    private router: Router, public toastService: ToastService) { }
+    private router: Router, public toastService: ToastService, private userservice: LearningDbService) { }
 
   ngOnInit(): void {
     this.refresh();
     this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
     this.userId = JSON.parse(localStorage.getItem('userid') || 'null')
     this.role = JSON.parse(localStorage.getItem('role') || 'null')
+
   }
   onRefresh() {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false }
@@ -46,6 +51,18 @@ export class HomeComponent implements OnInit {
       this.router.navigated = false
       this.router.navigate([this.router.url])
     })
+  }
+  displayButton(idf: string) {
+    this.userId = this.storageService.getUseId()
+    this.mescours = this.storageService.getCoursid()
+    if (this.mescours.filter(item => item == idf).length != 0) {
+      return !this.buttontrue;
+
+    } else {
+      return this.buttontrue;
+    }
+
+
   }
   addtoCart(oneformation: Formation, idformation: string) {
     this.panier = this.storageService.getPanier();
@@ -69,13 +86,6 @@ export class HomeComponent implements OnInit {
       this.storageService.storeOnpanier(oneformation);
       this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
     }
-  }
-  showSuccess() {
-    this.toastService.show('I am a success toast', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 4000 });
-
-  }
-  showStandard() {
-    this.toastService.show('I am a standard toast', { classname: 'bg-danger text-white font-weight-bold px-2 py-1', delay: 4000 });
   }
   refresh() {
     return this.formationservice.getFormations().subscribe((data: any) => {

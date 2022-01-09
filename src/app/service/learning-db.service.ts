@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class LearningDbService {
 
-  api_url: string = 'http://localhost:3000';
+  api_url: string = 'http://localhost:4001';
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

@@ -27,20 +27,16 @@ export class DetailformationComponent implements OnInit {
   array: string
   idcours: string[]
   ok: boolean
+  role: User
   constructor(private userservice: LearningDbService, private storageService: LocalstorageService, private router: Router, private route: ActivatedRoute, private formationservice: FormationDbService) { }
 
   ngOnInit(): void {
-    //this.i = this.route.snapshot.params.id;
     this.route.paramMap.subscribe(params => {
       this.i = params.get("id")
 
     });
     this.myformation(this.i)
-    /* this.formationservice.getOneformation(this.i).subscribe((data: any) => {
-      this.detailsformation = data;
-      //console.log(this.detailsformation);
-
-    }); */
+    this.role = JSON.parse(localStorage.getItem('role') || 'null')
   }
 
   //test si cet formation est acheté ou non

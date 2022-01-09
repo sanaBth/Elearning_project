@@ -75,7 +75,13 @@
   </header>
 </div> -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a
+    routerLink="/home"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+  >
+    <span class="fs-4">Cours en ligne</span>
+  </a>
+  <!--  <a class="" href="#">Navbar</a> -->
   <button
     class="navbar-toggler"
     type="button"
@@ -88,45 +94,65 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExample09">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
+  <div class="collapse navbar-collapse ml-5" id="navbarsExample09">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-          >Disabled</a
+        <a class="nav-link" routerLink="/panier"
+          >Panier <span class="label label-danger">{{ p }}</span></a
         >
       </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="dropdown09"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Dropdown</a
-        >
-        <div class="dropdown-menu" aria-labelledby="dropdown09">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+      <li class="nav-item" *ngIf="role">
+        <a class="nav-link" routerLink="/listuser">Liste utilisateurs</a>
+      </li>
+      <li class="nav-item" *ngIf="role">
+        <a class="nav-link" routerLink="/listecommande">Liste Commandes</a>
+      </li>
+      <li class="nav-item" *ngIf="role">
+        <div ngbDropdown class="d-inline-block dropdown">
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Ajouter</a>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic1"
+            class="dropdown-primary"
+          >
+            <a class="dropdown-item" routerLink="/addvideo">Ajouter Video</a>
+            <a class="dropdown-item" routerLink="/addformation"
+              >Ajouter Formation</a
+            >
+          </div>
         </div>
       </li>
+      <li class="nav-item" *ngIf="userconnected; else boutonConnecter">
+        <div ngbDropdown class="d-inline-block dropdown">
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle
+            >Bonjour {{ userconnected }}</a
+          >
+          <div
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic1"
+            class="dropdown-primary"
+          >
+            <a class="dropdown-item" routerLink="/myprofile">Mon profil</a>
+            <a class="dropdown-item" type="submit" (click)="logout()"
+              >Déconnexion</a
+            >
+          </div>
+        </div>
+      </li>
+      <ng-template #boutonConnecter>
+        <li class="nav-item" class="pull-left">
+          <button
+            type="button"
+            routerLink="/login"
+            class="btn btn-outline-neutral btn-round"
+          >
+            <i class="nc-icon nc-single-02"></i> Connexion
+          </button>
+        </li>
+      </ng-template>
     </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </form>
   </div>
 </nav>

@@ -13,7 +13,7 @@
       <p class="card-text">Formateur : {{ detailsformation?.nomformateur }}</p>
       <p class="card-text">{{ detailsformation?.description }}</p>
       <div *ngFor="let v of detailsformation?.listVideo">
-        <video width="320" height="240" controls *ngIf="role; ok">
+        <video width="320" height="240" controls *ngIf="ok; role">
           <source
             src="http://localhost:4001/uploads/{{ v?.lienVideo }}"
             class="card-img-top"
@@ -21,7 +21,7 @@
           />
           Browser not supported
         </video>
-        <p class="card-text">{{ v?.name }}</p>
+        <p class="card-text">Titres des vidéos : {{ v?.name }}</p>
         <p>
           <button
             *ngIf="role"

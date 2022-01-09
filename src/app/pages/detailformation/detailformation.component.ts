@@ -26,7 +26,7 @@ export class DetailformationComponent implements OnInit {
   listcours: any
   array: string
   idcours: string[]
-  ok: boolean
+  ok: boolean = true
   role: User
   constructor(private userservice: LearningDbService, private storageService: LocalstorageService, private router: Router, private route: ActivatedRoute, private formationservice: FormationDbService) { }
 
@@ -48,16 +48,17 @@ export class DetailformationComponent implements OnInit {
         this.mescours.push(this.listcours[i]._id)
       }
       if (this.mescours.filter(item => item == idf).length != 0) {
-
+        this.ok == false;
         this.formationservice.getOneformation(this.i).subscribe((data: any) => {
           this.detailsformation = data;
         });
-        this.ok == true;
+        //return this.ok;
       } else {
+        this.ok == true;
         this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
           this.detailsformation = data;
         });
-        this.ok == false;
+        // return !this.ok;
       }
 
     });

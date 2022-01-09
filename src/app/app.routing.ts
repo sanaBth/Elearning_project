@@ -19,11 +19,10 @@ import { PagesnotfoundComponent } from './pages/pagesnotfound/pagesnotfound.comp
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { PanierComponent } from './pages/panier/panier.component';
 import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.component';
-import { QuizComponent } from './pages/quiz/quiz.component';
 import { ProfiluserComponent } from './pages/profiluser/profiluser.component';
 import { UserGuard } from './guard/user.guard';
-import { HomeComponent } from './pages/home/home.component';
 import { UserlistComponent } from './pages/userlist/userlist.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'formation', pathMatch: 'full' },
@@ -32,8 +31,8 @@ const routes: Routes = [
   { path: 'user-profile', component: ProfileComponent },
   { path: 'login', component: SignupComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: LandingComponent },
-  { path: 'index', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+
   { path: 'formation', component: FormationComponent },
   { path: 'formation/:id', component: DetailformationComponent },
   { path: 'nucleoicons', component: NucleoiconsComponent },
@@ -46,7 +45,6 @@ const routes: Routes = [
   { path: 'addformation/:id', component: AddformationComponent, canActivate: [AuthGuardGuard] },
   { path: 'addvideo', component: AddvideoComponent, canActivate: [AuthGuardGuard] },
   { path: 'addvideo/:id', component: AddvideoComponent, canActivate: [AuthGuardGuard] },
-  { path: 'addquiz', component: QuizComponent, canActivate: [AuthGuardGuard] },
   { path: 'listecommande', component: ListeCommandeComponent, canActivate: [AuthGuardGuard] },
   { path: 'myprofile', component: ProfiluserComponent, canActivate: [UserGuard] },
   { path: 'panier', component: PanierComponent },

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-9">
       <img
-        src="http://localhost:3000/uploads/{{ detailsformation?.imagef }}"
+        src="http://localhost:4001/uploads/{{ detailsformation?.imagef }}"
         class="card-img-top"
         alt="..."
       />
@@ -13,7 +13,7 @@
       <div *ngFor="let v of detailsformation?.listVideo">
         <video width="320" height="240" controls>
           <source
-            src="http://localhost:3000/uploads/{{ v?.lienVideo }}"
+            src="http://localhost:4001/uploads/{{ v?.lienVideo }}"
             class="card-img-top"
             type="video/mp4"
           />

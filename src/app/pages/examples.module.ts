@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 
 import { LandingComponent } from './landing/landing.component';
@@ -22,9 +22,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component';
 import { PanierComponent } from './panier/panier.component';
 import { ListeCommandeComponent } from './liste-commande/liste-commande.component';
-import { QuizComponent } from './quiz/quiz.component';
 import { ProfiluserComponent } from './profiluser/profiluser.component';
 import { HomeComponent } from './home/home.component';
+
 import { UserlistComponent } from './userlist/userlist.component';
 
 
@@ -36,9 +36,9 @@ import { UserlistComponent } from './userlist/userlist.component';
         ReactiveFormsModule,
         RouterModule,
         Ng2SearchPipeModule,
-        
-    // ToastrModule added
-  
+
+        // ToastrModule added
+
     ],
     declarations: [
         LandingComponent,
@@ -57,12 +57,10 @@ import { UserlistComponent } from './userlist/userlist.component';
         PagesnotfoundComponent,
         PanierComponent,
         ListeCommandeComponent,
-        QuizComponent,
         ProfiluserComponent,
-        HomeComponent,
         UserlistComponent,
-        
-        
+        HomeComponent,
+
     ]
 })
 export class ExamplesModule { }

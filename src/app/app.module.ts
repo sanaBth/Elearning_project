@@ -11,7 +11,7 @@ import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './pages/examples.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainerComponent } from './pages/toasts-container/toasts-container.component';
 
 
@@ -22,8 +22,10 @@ import { ToastsContainerComponent } from './pages/toasts-container/toasts-contai
     AppComponent,
     NavbarComponent,
     FooterComponent,
-  
+
     ToastsContainerComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { ToastsContainerComponent } from './pages/toasts-container/toasts-contai
     ExamplesModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbPaginationModule, 
+    NgbPaginationModule,
     NgbAlertModule
   ],
   providers: [],

@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-  api_url: string = 'https://learningapi20.herokuapp.com';
+  api_url: string = 'http://localhost:4001';
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

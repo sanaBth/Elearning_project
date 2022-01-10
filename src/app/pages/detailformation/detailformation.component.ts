@@ -42,26 +42,33 @@ export class DetailformationComponent implements OnInit {
   //test si cet formation est acheté ou non
   myformation(idf: string) {
     this.userId = this.storageService.getUseId()
-    this.userservice.getprofil(this.userId).subscribe((data: any) => {
-      this.listcours = data.cours
-      for (let i = 0; i < this.listcours.length; i++) {
-        this.mescours.push(this.listcours[i]._id)
-      }
-      if (this.mescours.filter(item => item == idf).length != 0) {
-        this.ok == false;
-        this.formationservice.getOneformation(this.i).subscribe((data: any) => {
-          this.detailsformation = data;
-        });
-        //return this.ok;
-      } else {
-        this.ok == true;
-        this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
-          this.detailsformation = data;
-        });
-        // return !this.ok;
-      }
+    if (this.userId) {
+      this.userservice.getprofil(this.userId).subscribe((data: any) => {
+        this.listcours = data.cours
+        for (let i = 0; i < this.listcours.length; i++) {
+          this.mescours.push(this.listcours[i]._id)
+        }
+        if (this.mescours.filter(item => item == idf).length != 0) {
+          this.ok == false;
+          this.formationservice.getOneformation(this.i).subscribe((data: any) => {
+            this.detailsformation = data;
+          });
+          //return this.ok;
+        } else {
+          this.ok == true;
+          this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
+            this.detailsformation = data;
+          });
+          // return !this.ok;
+        }
 
-    });
+      });
+    } else {
+      this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
+        this.detailsformation = data;
+      });
+    }
+
 
   }
   delvideo(id: string) {

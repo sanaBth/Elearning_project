@@ -12,7 +12,7 @@ import { pipe, of, forkJoin } from 'rxjs/index';
 })
 export class FormationDbService {
 
-  api_url: string = 'https://learningapi20.herokuapp.com';
+  api_url: string = 'http://localhost:4001';
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

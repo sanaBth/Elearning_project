@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Commande } from 'app/model/commande';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
+import { environment } from 'environments/environment';
 import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class AdministratorService {
 
-  api_url: string = 'http://localhost:4001';
+  api_url: string = environment.api_url;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

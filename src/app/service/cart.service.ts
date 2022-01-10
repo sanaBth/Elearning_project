@@ -2,14 +2,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Commande } from 'app/model/commande';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
+
 import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  api_url: string = 'http://localhost:4001';
+  api_url: string = environment.api_url;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

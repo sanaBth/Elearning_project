@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { User } from 'app/model/user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class LearningDbService {
 
-  api_url: string = 'http://localhost:4001';
+  api_url: string = environment.api_url;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
 

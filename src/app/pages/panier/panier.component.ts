@@ -79,11 +79,9 @@ export class PanierComponent implements OnInit {
         this.cartService.addTocommande(this.userId, this.cmd).subscribe(
           (res) => {
             console.log(res);
-            // this.router.navigate(['/formation']);
           },
           (err) => {
             console.log(err);
-            //notification error
           }
         );
         ///payment stripe

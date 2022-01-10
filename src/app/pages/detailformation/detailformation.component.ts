@@ -26,8 +26,9 @@ export class DetailformationComponent implements OnInit {
   listcours: any
   array: string
   idcours: string[]
-  ok: boolean = true
+  ok: boolean
   role: User
+  userconnected: User
   constructor(private userservice: LearningDbService, private storageService: LocalstorageService, private router: Router, private route: ActivatedRoute, private formationservice: FormationDbService) { }
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class DetailformationComponent implements OnInit {
     });
     this.myformation(this.i)
     this.role = JSON.parse(localStorage.getItem('role') || 'null')
+    this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
   }
 
   //test si cet formation est acheté ou non
@@ -49,13 +51,17 @@ export class DetailformationComponent implements OnInit {
           this.mescours.push(this.listcours[i]._id)
         }
         if (this.mescours.filter(item => item == idf).length != 0) {
-          this.ok == false;
+
+          this.ok = true;
+          console.log(this.role);
           this.formationservice.getOneformation(this.i).subscribe((data: any) => {
             this.detailsformation = data;
           });
           //return this.ok;
         } else {
-          this.ok == true;
+          this.ok = false;
+
+          console.log(this.ok);
           this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
             this.detailsformation = data;
           });
@@ -64,6 +70,7 @@ export class DetailformationComponent implements OnInit {
 
       });
     } else {
+      this.ok = false;
       this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
         this.detailsformation = data;
       });

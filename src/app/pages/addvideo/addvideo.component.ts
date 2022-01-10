@@ -73,7 +73,7 @@ export class AddvideoComponent implements OnInit {
           console.log(res);
           this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 
-          this.router.navigate(['/formation']);
+          this.router.navigate(['/home']);
         },
         (err) => {
           console.log(err);
@@ -87,7 +87,7 @@ export class AddvideoComponent implements OnInit {
       });
       this.toastService.show('Votre vidéo a été modifiée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 
-      this.router.navigate(['/formation']);
+      this.router.navigate(['/home']);
 
     }
   }

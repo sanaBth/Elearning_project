@@ -8,13 +8,13 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node index.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "heroku-postbuild": "ng build --prod"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@angular/animations": "11.0.4",
@@ -32,11 +32,13 @@
     "@ng-bootstrap/ng-bootstrap": "6.0.0",
     "bootstrap": "4.5.3",
     "core-js": "3.8.1",
+    "express": "^4.17.2",
     "jquery": "3.5.1",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ng2-nouislider": "1.8.2",
     "ng2-search-filter": "^0.5.1",
     "nouislider": "14.6.3",
+    "path": "^0.12.7",
     "popper.js": "1.16.1",
     "rxjs": "6.6.3",
     "rxjs-compat": "6.6.3",

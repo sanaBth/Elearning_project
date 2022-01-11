@@ -13,7 +13,7 @@ import { ToastService } from 'app/service/toast.service';
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
-  panier = Panier
+  panier: Panier
   id: any
   somme: Number = 0;
   userId: string

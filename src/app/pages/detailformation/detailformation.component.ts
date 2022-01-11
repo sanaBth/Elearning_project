@@ -15,7 +15,7 @@ import { environment } from 'environments/environment';
 export class DetailformationComponent implements OnInit {
   i: string;
   environment = environment;
-  detailsformation: Formation[]
+  detailsformation: Formation
   detailVideo: any
   listVideo: []
   nom: string

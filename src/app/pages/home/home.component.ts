@@ -18,7 +18,7 @@ import { environment } from 'environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  environment = environment;
   formation: []
   newformation: []
   filterargs: string

@@ -32,9 +32,8 @@
             </div>
             <!--  -->
 
-            <div class="col-auto">
+            <div class="col-auto" *ngIf="progress > 0">
               <ngb-progressbar
-                *ngIf="progress > 0"
                 type="warning"
                 class="mt-0"
                 [value]="progress"

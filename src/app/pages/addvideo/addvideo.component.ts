@@ -1,3 +1,4 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,9 +15,10 @@ export class AddvideoComponent implements OnInit {
   video: any
   id: string
   actionPage: String = 'Ajouter vidéo';
-  formation: any
-  arrayForm: Video = new Video('', '', '', '')
-  newformation: Video
+  formation: any;
+  progress: number = 0;
+  arrayForm: Video = new Video('', '', '', '');
+  newformation: Video;
   postForm: FormGroup;
   constructor(public toastService: ToastService, private route: ActivatedRoute, private router: Router, private formationservice: FormationDbService) { }
 
@@ -69,8 +71,25 @@ export class AddvideoComponent implements OnInit {
     console.log(this.id)
     if (this.actionPage == 'Ajouter vidéo') {
       this.formationservice.addVideo(formData, this.id).subscribe(
-        (res) => {
-          console.log(res);
+        (event: HttpEvent<any>) => {
+          switch (event.type) {
+            case HttpEventType.Sent:
+              console.log('Request has been made!');
+              break;
+            case HttpEventType.ResponseHeader:
+              console.log('Response header has been received!');
+              break;
+            case HttpEventType.UploadProgress:
+              this.progress = Math.round(event.loaded / event.total * 100);
+              console.log(`Uploaded! ${this.progress}%`);
+              break;
+            case HttpEventType.Response:
+              console.log('User successfully created!', event.body);
+              setTimeout(() => {
+                this.progress = 0;
+              }, 1500);
+
+          }
           this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 
           this.router.navigate(['/home']);

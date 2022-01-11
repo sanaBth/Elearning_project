@@ -10,6 +10,8 @@ import { FormationDbService } from 'app/service/formation-db.service';
 import { LearningDbService } from 'app/service/learning-db.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
 import { ToastService } from 'app/service/toast.service';
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -3,7 +3,7 @@
   <div class="mt-5 row">
     <div class="col-md-9">
       <img
-        src="http://localhost:4001/uploads/{{ detailsformation?.imagef }}"
+        src="{{ environment?.api_url }}/uploads/{{ detailsformation?.imagef }}"
         class="img-fluid"
       />
       <h5 class="mt-2 card-title">
@@ -16,7 +16,7 @@
         <div *ngIf="userconnected">
           <video width="320" height="240" controls *ngIf="ok">
             <source
-              src="http://localhost:4001/uploads/{{ v?.lienVideo }}"
+              src="{{ environment.api_url }}/uploads/{{ v?.lienVideo }}"
               class="card-img-top"
               type="video/mp4"
             />

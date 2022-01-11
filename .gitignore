@@ -1,2 +1,4 @@
 node_modules
 src/assets/videos
+src/app/pages/landing
+src/app/pages/profile

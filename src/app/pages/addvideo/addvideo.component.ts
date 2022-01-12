@@ -50,7 +50,6 @@ export class AddvideoComponent implements OnInit {
 
   selectFile(e: any) {
     this.video = e.target.files[0]
-    console.log(this.video);
   }
 
   selectId(e: any) {
@@ -62,45 +61,30 @@ export class AddvideoComponent implements OnInit {
     formData.append('video', this.video)
     formData.append('description', this.postForm.controls.description.value)
     formData.append('dure', this.postForm.controls.dure.value)
-    console.log(formData)
-    console.log(this.id)
     if (this.actionPage == 'Ajouter vidéo') {
       this.formationservice.addVideo(formData, this.id).subscribe(
         (event: HttpEvent<HttpEventType>) => {
 
           switch (event.type) {
             case HttpEventType.Sent:
-              console.log('Request has been made!');
               break;
             case HttpEventType.ResponseHeader:
-              console.log('Response header has been received!');
               break;
             case HttpEventType.UploadProgress:
               this.progress = Math.round(event.loaded / event.total * 100);
-              console.log(`Uploaded! ${this.progress}%`);
               break;
             case HttpEventType.Response:
-              console.log('User successfully created!', event.body);
-              setTimeout(() => {
-                this.progress = 0;
-              }, 1500);
-
+              this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+              this.router.navigate(['/home']);
           }
-          /*  if (this.progress >= 100) {
-             this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
-             //this.router.navigate(['/home']);
-           } */
-
         },
         (err) => {
           console.log(err);
-          //notification error
         });
     }
     else {
       this.formationservice.upvideo(formData, this.id).subscribe((data: any) => {
         this.newformation = data;
-        console.log(this.newformation);
       });
       this.toastService.show('Votre vidéo a été modifiée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 

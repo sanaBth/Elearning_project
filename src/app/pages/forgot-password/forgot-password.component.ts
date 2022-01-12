@@ -10,30 +10,25 @@ import { LocalstorageService } from 'app/service/localstorage.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   resetform: FormGroup;
-  controls:any
-  constructor(private _authService:  LearningDbService,private _localstorage :LocalstorageService) { }
+  controls: any
+  constructor(private _authService: LearningDbService, private _localstorage: LocalstorageService) { }
 
   ngOnInit(): void {
     this.resetform = new FormGroup
-    ({
-      email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    })
+      ({
+        email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      })
     this.controls = this.resetform.controls
   }
-  onSubmit()
-  {
-    console.log(this.resetform.value);
-
+  onSubmit() {
     this._authService.forgotPassword(this.resetform.value).subscribe(
-      (res : any)=>{
-        console.log(res);
-   this._localstorage.settoken(res.token);
-   this._localstorage.setuserId(res.token);
+      (res: any) => {
+        this._localstorage.settoken(res.token);
+        this._localstorage.setuserId(res.token);
       },
-      (err)=>{
+      (err) => {
         console.log(err);
-      //notification error
-    }
+      }
     );;
   }
 }

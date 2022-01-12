@@ -26,15 +26,11 @@ export class AddformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    console.log(this.id);
     if (this.id) {
       this.actionPage = 'Modifier formation';
       this.formationService.getOneformation(this.id).subscribe((data: any) => {
         this.arrayForm = data;
         this.postForm.patchValue(this.arrayForm);
-        //this.list = data.listVideo
-        console.log(this.arrayForm.imagef);
-
       });
     }
 
@@ -51,7 +47,6 @@ export class AddformationComponent implements OnInit {
   selectFile(e: any) {
 
     this.img = e.target.files[0]
-    console.log(this.img);
   }
   selectVideos(e: any) {
     this.videos = e.target.files
@@ -68,18 +63,14 @@ export class AddformationComponent implements OnInit {
     formData.append('dure', this.postForm.controls.dure.value)
     formData.append('nomformateur', this.postForm.controls.nomformateur.value)
     formData.append('prix', this.postForm.controls.prix.value)
-    console.log(formData)
     if (this.actionPage == 'Ajouter formation') {
       this.formationService.addFormation(formData).subscribe(
         (res) => {
-          console.log(res);
           this.toastService.show('Votre formation a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
-
           this.router.navigate(['/home']);
         },
         (err) => {
           console.log(err);
-          //notification error
 
         }
       );
@@ -87,7 +78,6 @@ export class AddformationComponent implements OnInit {
     else {
       this.formationService.upformation(formData, this.id).subscribe((data: any) => {
         this.newformation = data;
-        console.log(this.newformation);
       });
       this.toastService.show('Votre formation a été modifiée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
 

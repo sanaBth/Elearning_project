@@ -43,7 +43,6 @@ export class PanierComponent implements OnInit {
   }
   sommeTotal() {
     this.panier = this.storageService.getPanier();
-    //console.log(this.panier);
     for (let i = 0; i < this.panier.length; i++) {
       this.somme = this.panier[i].prix + this.somme
     }
@@ -60,7 +59,6 @@ export class PanierComponent implements OnInit {
 
   }
   passerCommande(p: Panier, sommePanier: any) {
-    // console.log(this.storageService.lengthPanier());
     if (this.storageService.lengthPanier() == 0) {
       this.toastService.show("Veuillez ajouter au panier d'abord!", { classname: 'bg-warning text-white font-weight-bold px-2 py-1', delay: 2000 });
 
@@ -78,7 +76,6 @@ export class PanierComponent implements OnInit {
         this.cmd.idformation = this.idformationpanier
         this.cartService.addTocommande(this.userId, this.cmd).subscribe(
           (res) => {
-            console.log(res);
           },
           (err) => {
             console.log(err);
@@ -91,7 +88,6 @@ export class PanierComponent implements OnInit {
 
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken.card);
             viderpanier();
 
           },
@@ -124,8 +120,6 @@ export class PanierComponent implements OnInit {
       script.type = 'text/javascript';
       script.src = 'https://checkout.stripe.com/checkout.js';
       window.document.body.appendChild(script);
-      console.log('test0');
     }
-    console.log('test1');
   }
 }

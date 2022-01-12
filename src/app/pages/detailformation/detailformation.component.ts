@@ -84,12 +84,9 @@ export class DetailformationComponent implements OnInit {
 
   }
   delvideo(id: string) {
-    console.log(id);
     this.formationservice.delvideo(id);
     return this.formationservice.getOneformation(this.i).subscribe((data: any) => {
       this.detailsformation = data;
-      //this.list = data.listVideo
-      console.log(this.detailsformation);
 
     });
   }

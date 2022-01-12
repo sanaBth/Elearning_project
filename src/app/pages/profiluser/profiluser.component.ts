@@ -31,7 +31,6 @@ export class ProfiluserComponent implements OnInit {
       this.userdata = data;
       this.coursdata = data.cours;
       if (this.coursdata.length == 0) {
-        console.log("tabeauvide");
         return this.tableauvide;
       }
 

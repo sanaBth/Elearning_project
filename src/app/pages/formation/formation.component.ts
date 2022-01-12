@@ -50,10 +50,8 @@ export class FormationComponent implements OnInit {
   }
   addtoCart(oneformation: Formation, idformation: string) {
     this.panier = this.storageService.getPanier();
-    //console.log(this.panier);
     if (this.panier.length != 0) {
       this.onRefresh()
-      //console.log("panier plein");
       if ((this.panier.find(item => item._id === idformation)) === undefined) {
         this.storageService.storeOnpanier(oneformation)
         this.onRefresh()
@@ -66,7 +64,6 @@ export class FormationComponent implements OnInit {
       }
     }
     else {
-      // console.log("panier vide");
       this.storageService.storeOnpanier(oneformation);
       this.toastService.show('Votre formation a été ajoutée au panier avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
     }

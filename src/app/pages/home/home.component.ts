@@ -74,7 +74,6 @@ export class HomeComponent implements OnInit {
 
     this.panier = this.storageService.getPanier();
     this.onRefresh();
-    //console.log(this.panier);
     if (this.panier.length != 0) {
       if ((this.panier.find(item => item._id === idformation)) === undefined) {
         this.storageService.storeOnpanier(oneformation);

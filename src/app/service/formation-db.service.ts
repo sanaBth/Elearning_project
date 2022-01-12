@@ -75,14 +75,12 @@ export class FormationDbService {
   //delete une formation
   delFormation(id: string) {
     return this.httpClient.delete(`${this.api_url}/formation/delete/${id}`).subscribe(data => {
-      console.log(data);
     });
   }
 
   //delete un video
   delvideo(id: string) {
     return this.httpClient.delete(`${this.api_url}/video/delete/${id}`).subscribe(data => {
-      console.log(data);
     });
   }
 
@@ -90,7 +88,6 @@ export class FormationDbService {
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
       msg = error.error.message;
     } else {
       // server-side error

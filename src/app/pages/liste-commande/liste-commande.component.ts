@@ -8,20 +8,18 @@ import { LocalstorageService } from 'app/service/localstorage.service';
   styleUrls: ['./liste-commande.component.css']
 })
 export class ListeCommandeComponent implements OnInit {
-  listcommande : Commande[]
-  constructor(private storage : LocalstorageService, private adminservice : AdministratorService) { }
+  listcommande: Commande[]
+  constructor(private storage: LocalstorageService, private adminservice: AdministratorService) { }
 
   ngOnInit(): void {
     this.getCommande();
   }
-  getCommande()
-  {
-   
- return this.adminservice.getcommandes().subscribe((data:any) => {
-  this.listcommande = data;
- //console.log(this.listcommande);
-});
-  
+  getCommande() {
+
+    return this.adminservice.getcommandes().subscribe((data: any) => {
+      this.listcommande = data;
+    });
+
   }
 
 }

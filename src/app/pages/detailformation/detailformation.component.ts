@@ -39,8 +39,9 @@ export class DetailformationComponent implements OnInit {
       this.i = params.get("id")
 
     });
-    this.myformation(this.i)
+
     this.role = JSON.parse(localStorage.getItem('role') || 'null')
+    this.myformation(this.i)
     this.userconnected = JSON.parse(localStorage.getItem('userconnected') || 'null')
   }
 
@@ -48,12 +49,16 @@ export class DetailformationComponent implements OnInit {
   myformation(idf: string) {
     this.userId = this.storageService.getUseId()
     if (this.userId) {
+      console.log(this.role);
       if (this.role) {
+
         this.ok = true;
         this.formationservice.getOneformation(this.i).subscribe((data: any) => {
           this.detailsformation = data;
+          console.log(this.detailsformation);
         });
       } else {
+
         this.userservice.getprofil(this.userId).subscribe((data: any) => {
           this.listcours = data.cours
           for (let i = 0; i < this.listcours.length; i++) {
@@ -63,11 +68,13 @@ export class DetailformationComponent implements OnInit {
             this.ok = true;
             this.formationservice.getOneformation(this.i).subscribe((data: any) => {
               this.detailsformation = data;
+              console.log(this.detailsformation);
             });
           } else {
             this.ok = false;
             this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
               this.detailsformation = data;
+              console.log(this.detailsformation);
             });
           }
 

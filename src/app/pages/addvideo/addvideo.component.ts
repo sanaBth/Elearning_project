@@ -72,30 +72,12 @@ export class AddvideoComponent implements OnInit {
     if (this.actionPage == 'Ajouter vidéo') {
       this.formationservice.addVideo(formData, this.id).subscribe(
         (event: HttpEvent<any>) => {
-          console.log("event", event);
-          console.log("progress before switch", this.progress);
-          switch (event.type) {
-            case HttpEventType.Sent:
-              console.log('Request has been made!');
-
-              break;
-            case HttpEventType.ResponseHeader:
-              console.log('Response header has been received!');
-              break;
-            case HttpEventType.UploadProgress:
-              this.progress = Math.round(event.loaded / event.total * 100);
-              console.log(`Uploaded! ${this.progress}%`);
-              break;
-            case HttpEventType.Response:
-              console.log('User successfully created!', event.body);
-              setTimeout(() => {
-                this.progress = 0;
-              }, 1500);
-
+          if (event.type == HttpEventType.UploadProgress) {
+            this.progress = Math.round(event.loaded / event.total * 100);
+            console.log(`Uploaded! ${this.progress}%`);
           }
-          this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
-
-          this.router.navigate(['/home']);
+          //   this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+          // this.router.navigate(['/home']);
         },
         (err) => {
           console.log(err);

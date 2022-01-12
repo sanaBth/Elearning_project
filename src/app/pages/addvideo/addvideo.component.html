@@ -33,15 +33,21 @@
             <!--  *ngIf="progress > 0"-->
 
             <div class="col-auto">
+              <!--  <ngb-progressbar
+                type="warning"
+                class="mt-0"
+                [value]="progress"
+                [striped]="true"
+                [animated]="true"
+                ><i>{{ progress }}</i></ngb-progressbar  >-->
               <ngb-progressbar
                 type="warning"
                 class="mt-0"
                 [value]="progress"
                 [striped]="true"
                 [animated]="true"
-                ><i>{{ progress }}</i></ngb-progressbar
-              >
-
+                ><i>50%</i>
+              </ngb-progressbar>
               <label for="fileselect" class="form-label"
                 >Selectionner vidéo</label
               >

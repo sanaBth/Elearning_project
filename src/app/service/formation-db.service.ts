@@ -31,7 +31,10 @@ export class FormationDbService {
 
   //ajouter un vidéo
   addVideo(form: FormData, id: string): Observable<any> {
-    return this.httpClient.post(`${this.api_url}/video/add/${id}`, form).pipe(
+    return this.httpClient.post(`${this.api_url}/video/add/${id}`, form, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
       catchError(this.handleError)
     )
   }

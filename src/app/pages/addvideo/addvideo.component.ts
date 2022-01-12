@@ -11,6 +11,7 @@ import { ToastService } from 'app/service/toast.service';
   templateUrl: './addvideo.component.html',
   styleUrls: ['./addvideo.component.css']
 })
+
 export class AddvideoComponent implements OnInit {
   video: any
   id: string
@@ -24,22 +25,17 @@ export class AddvideoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    console.log(this.id);
     if (this.id) {
       this.actionPage = 'Modifier vidéo ';
       this.formationservice.getOnevideo(this.id).subscribe((data: any) => {
         this.arrayForm = data;
         this.postForm.patchValue(this.arrayForm);
-        //this.list = data.listVideo
-        console.log(this.arrayForm);
       });
     }
 
     //liste des formations
     this.formationservice.getFormations().subscribe((data: any) => {
       this.formation = data;
-      /// let id = this.formation._id;
-      console.log(this.formation);
     });
 
     this.postForm = new FormGroup
@@ -59,7 +55,6 @@ export class AddvideoComponent implements OnInit {
 
   selectId(e: any) {
     this.id = e.target.value;
-    console.log(this.id);
   }
   newVideo() {
     let formData = new FormData()
@@ -71,13 +66,31 @@ export class AddvideoComponent implements OnInit {
     console.log(this.id)
     if (this.actionPage == 'Ajouter vidéo') {
       this.formationservice.addVideo(formData, this.id).subscribe(
-        (event: HttpEvent<any>) => {
-          if (event.type == HttpEventType.UploadProgress) {
-            this.progress = Math.round(event.loaded / event.total * 100);
-            console.log(`Uploaded! ${this.progress}%`);
+        (event: HttpEvent<HttpEventType>) => {
+
+          switch (event.type) {
+            case HttpEventType.Sent:
+              console.log('Request has been made!');
+              break;
+            case HttpEventType.ResponseHeader:
+              console.log('Response header has been received!');
+              break;
+            case HttpEventType.UploadProgress:
+              this.progress = Math.round(event.loaded / event.total * 100);
+              console.log(`Uploaded! ${this.progress}%`);
+              break;
+            case HttpEventType.Response:
+              console.log('User successfully created!', event.body);
+              setTimeout(() => {
+                this.progress = 0;
+              }, 1500);
+
           }
-          //   this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
-          // this.router.navigate(['/home']);
+          if (this.progress >= 100) {
+            this.toastService.show('Votre vidéo a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+            this.router.navigate(['/home']);
+          }
+
         },
         (err) => {
           console.log(err);

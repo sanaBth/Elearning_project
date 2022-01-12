@@ -49,13 +49,11 @@ export class DetailformationComponent implements OnInit {
   myformation(idf: string) {
     this.userId = this.storageService.getUseId()
     if (this.userId) {
-      console.log(this.role);
       if (this.role) {
 
         this.ok = true;
         this.formationservice.getOneformation(this.i).subscribe((data: any) => {
           this.detailsformation = data;
-          console.log(this.detailsformation);
         });
       } else {
 
@@ -68,13 +66,11 @@ export class DetailformationComponent implements OnInit {
             this.ok = true;
             this.formationservice.getOneformation(this.i).subscribe((data: any) => {
               this.detailsformation = data;
-              console.log(this.detailsformation);
             });
           } else {
             this.ok = false;
             this.formationservice.getOneformationwv(this.i).subscribe((data: any) => {
               this.detailsformation = data;
-              console.log(this.detailsformation);
             });
           }
 

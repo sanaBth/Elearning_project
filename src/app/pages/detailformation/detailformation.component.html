@@ -2,10 +2,7 @@
 <div class="container-fluid">
   <div class="mt-5 row">
     <div class="col-md-9">
-      <img
-        src="{{ environment?.api_url }}/uploads/{{ detailsformation?.imagef }}"
-        class="img-fluid"
-      />
+      <img [src]="detailsformation?.imagef" class="img-fluid" />
       <h5 class="mt-2 card-title">
         <dt>{{ detailsformation?.nom }}</dt>
       </h5>
@@ -16,7 +13,7 @@
         <div *ngIf="userconnected">
           <video width="320" height="240" controls *ngIf="ok">
             <source
-              src="{{ environment.api_url }}/uploads/{{ v?.lienVideo }}"
+              [src]="v?.lienVideo"
               class="card-img-top"
               type="video/mp4"
             />

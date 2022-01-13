@@ -43,7 +43,7 @@ export class AddvideoComponent implements OnInit {
         name: new FormControl(this.arrayForm.name, Validators.required),
         dure: new FormControl(this.arrayForm.dure, Validators.required),
         description: new FormControl(this.arrayForm.description, Validators.required),
-        lienVideo: new FormControl(this.arrayForm.link, Validators.required),
+
       })
 
   }

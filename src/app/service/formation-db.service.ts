@@ -24,7 +24,10 @@ export class FormationDbService {
 
   //ajouter un formation
   addFormation(form: FormData): Observable<any> {
-    return this.httpClient.post(`${this.api_url}/formation/add`, form).pipe(
+    return this.httpClient.post(`${this.api_url}/formation/add`, form, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
       catchError(this.handleError)
     )
   }

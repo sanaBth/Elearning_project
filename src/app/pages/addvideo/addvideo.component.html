@@ -30,16 +30,17 @@
                 Ce champs est obligatoire
               </div>
             </div>
-            <!--  *ngIf="progress > 0"-->
-
             <div class="col-auto">
-              <!--  <ngb-progressbar
-                type="warning"
-                class="mt-0"
-                [value]="progress"
-                [striped]="true"
-                [animated]="true"
-                ><i>{{ progress }}</i></ngb-progressbar  >-->
+              <label for="fileselect" class="form-label"
+                >Selectionner vidéo</label
+              >
+              <input
+                class="form-control"
+                name="lienVideo"
+                type="file"
+                id="fileselect"
+                (change)="selectFile($event)"
+              />
               <ngb-progressbar
                 *ngIf="progress != 0"
                 type="warning"
@@ -49,18 +50,6 @@
                 [animated]="true"
                 ><i>{{ progress }}%</i>
               </ngb-progressbar>
-              <label for="fileselect" class="form-label"
-                >Selectionner vidéo</label
-              >
-
-              <input
-                class="form-control"
-                formControlName="lienVideo"
-                name="lienVideo"
-                type="file"
-                id="fileselect"
-                (change)="selectFile($event)"
-              />
             </div>
             <div class="col-auto">
               <label for="myInput" class="form-label">Durée vidéo</label>

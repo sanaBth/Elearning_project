@@ -9,6 +9,7 @@ import { User } from 'app/model/user';
 import { FormationDbService } from 'app/service/formation-db.service';
 import { LocalstorageService } from 'app/service/localstorage.service';
 import { ToastService } from 'app/service/toast.service';
+import { environment } from 'environments/environment';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { ToastService } from 'app/service/toast.service';
 })
 export class FormationComponent implements OnInit {
   formation: []
+  environment = environment;
   newformation: []
   filterargs: string
   detailsformation: any

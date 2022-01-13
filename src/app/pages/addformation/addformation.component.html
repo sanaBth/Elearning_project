@@ -36,14 +36,21 @@
               <label for="fileselect" class="form-label"
                 >Selectionner image</label
               >
-
               <input
                 type="file"
                 class="form-control"
                 (change)="selectFile($event)"
                 value="arrayForm.imagef"
-               
               />
+              <ngb-progressbar
+                *ngIf="progress != 0"
+                type="warning"
+                class="mt-0"
+                [value]="progress"
+                [striped]="true"
+                [animated]="true"
+                ><i>{{ progress }}%</i>
+              </ngb-progressbar>
             </div>
             <div class="col-auto">
               <label for="myInput" class="form-label">Durée formation</label>

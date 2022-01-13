@@ -1,4 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,6 +20,7 @@ export class AddformationComponent implements OnInit {
   postForm: FormGroup;
   formation: Formation
   newformation: Formation
+  progress: number = 0;
   arrayForm: Formation = new Formation('', '', '', '', '', '', null, null, [])
   videos: any[]
   constructor(private router: Router, private route: ActivatedRoute
@@ -65,9 +67,20 @@ export class AddformationComponent implements OnInit {
     formData.append('prix', this.postForm.controls.prix.value)
     if (this.actionPage == 'Ajouter formation') {
       this.formationService.addFormation(formData).subscribe(
-        (res) => {
-          this.toastService.show('Votre formation a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
-          this.router.navigate(['/home']);
+        (event: HttpEvent<HttpEventType>) => {
+
+          switch (event.type) {
+            case HttpEventType.Sent:
+              break;
+            case HttpEventType.ResponseHeader:
+              break;
+            case HttpEventType.UploadProgress:
+              this.progress = Math.round(event.loaded / event.total * 100);
+              break;
+            case HttpEventType.Response:
+              this.toastService.show('Votre formation a été ajoutée avec succé!', { classname: 'bg-success text-white font-weight-bold px-2 py-1', delay: 3000 });
+              this.router.navigate(['/home']);
+          }
         },
         (err) => {
           console.log(err);
